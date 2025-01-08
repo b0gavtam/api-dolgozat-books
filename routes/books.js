@@ -14,7 +14,7 @@ router.get("/", async (req,res,next)=>{
 })
 router.get("/:id", async (req,res,next) => {
     try {
-        const [book] = await dbQuery("SELECT FROM books WHERE id = ?;", [req.params.id])
+        const [book] = await dbQuery("SELECT * FROM books WHERE id = ?;", [req.params.id])
         if (![book]) {
             return res.status(404).json({message: "Not found!"})
         }
@@ -37,7 +37,7 @@ router.post("/", async (req,res, next) =>{
 })
 router.put("/:id", async (req,res,next) =>{
     try {
-        const [book] = await dbQuery("SELECT FROM books WHERE id = ?;", [req.params.id])
+        const [book] = await dbQuery("SELECT * FROM books WHERE id = ?;", [req.params.id])
         if (![book]) {
             return res.status(404).json({message: "Not found!"})
         }
@@ -50,7 +50,7 @@ router.put("/:id", async (req,res,next) =>{
     }
 })
 router.delete("/:id", async (req,res,next) =>{
-    const [book] = await dbQuery("SELECT FROM books WHERE id = ?;", [req.params.id])
+    const [book] = await dbQuery("SELECT * FROM books WHERE id = ?;", [req.params.id])
     if (![book]) {
         return res.status(404).json({message: "Not found!"})
     }
