@@ -9,8 +9,8 @@ const swaggerDocument = JSON.parse(await readFile(new URL("./swagger-output.json
 
 const app = express()
 
-app.use(cors)
-app.use(express.json)
+app.use(cors())
+app.use(express.json())
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/books", booksRouter)
 app.use((err,req,res,next) =>{
