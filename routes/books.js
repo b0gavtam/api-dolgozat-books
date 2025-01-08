@@ -1,7 +1,7 @@
 import express from "express"
 import { dbQuery, dbRun } from "../database.js"
 
-const router = express.router()
+const router = express.Router()
 
 router.get("/", async (req,res,next)=>{
     try {

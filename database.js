@@ -9,6 +9,9 @@ const initializeDB = async () =>{
             description: "A Roxfort Boszorkány- és Varázslóképző Szakiskolában töltött első tanév kemény erőpróba a diákok számára. Harry Potternek nem csupán a vizsgákon kell megfelelnie, de egy életre-halálra szóló küzdelemnek is részese lesz. A tizenegy éves varázslójelölt története meghódította az egész világot.",
             year: 2024}
     ]
+    for (const book of books) {
+        await dbRun("INSERT INTO books (title, author, description, year) VALUES (?, ?, ?, ?)", [book.title, book.author, book.description, book.year]);
+    }
 }
 
 function dbQuery(sql, params = []){
@@ -23,7 +26,7 @@ function dbRun(sql, params = []){
     return new Promise((resolve, reject) =>{
         db.run(sql,params, function (err){
             if (err) reject(err)
-                else resolve(rows)
+                else resolve(this)
         })
     })
 }
